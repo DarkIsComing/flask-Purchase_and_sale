@@ -1,0 +1,46 @@
+{% extends "admin/bases.html" %}
+
+
+{% block content %}
+
+<div class="x-body">
+	<div class="layui-row">
+
+		<form class="layui-form layui-col-xs9 x-so layui-col-space10 layui-form-pane" method="post">
+
+		 <div class="layui-input-inline">
+			 {{form.account}}
+		</div>
+            <div class="layui-input-inline">
+			 {{form.dutyser}}
+		</div>
+<div class="layui-input-inline">
+			 {{form.sectionsr}}
+		</div>
+		  {{form.csrf_token}}
+      {{form.submit}}
+            						  {% for message in get_flashed_messages() %}
+    	<script>
+            layui.use('layer', function(){
+  var layer = layui.layer;
+  layer.msg('{{ message }}');
+});
+
+        </script>
+    {% endfor %}
+
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+
+
+		</form>
+	</div>
+
+</div>
+<script>
+     function mesg() {
+	      layer.msg('添加成功!',{icon:1,time:2000});
+              setTimeout(function(){x_admin_close(); }, 2000);
+       }
+</script>
+
+{% endblock %}

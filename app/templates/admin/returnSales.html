@@ -1,0 +1,77 @@
+
+{% extends "admin/bases.html" %}
+ {% import "admin/fy.html" as pg %}
+{% block content %}
+
+
+    <div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so" method="post">
+           {{form.goods_name}}
+            {{form.person_name}}
+
+            {{form.csrf_token}}
+          {{form.submit}}
+        </form>
+      </div>
+
+      <table class="layui-table">
+        <thead>
+         <tr>
+
+            <th>商品编号</th>
+            <th>商品名称</th>
+            <th>数量</th>
+            <th>总价</th>
+            <th>客户</th>
+            <th>进货人</th>
+            <th>进货时间</th>
+            <th >操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in page_data.items %}
+         <tr>
+
+           <td>{{i.sealreturngoods_num}}</td>
+            <td>{{i.sealreturngoods_goods}}</td>
+            <td>{{i.sealreturngoods_count}}</td>
+            <td>{{i.sealreturngoods_price}}</td>
+            <td>{{i.client_name}}</td>
+            <td>{{i.sealreturngoods_user_name}}</td>
+            <td>{{i.sealreturngoods_addtime}}</td>
+            <td class="td-manage">
+              <a title="删除" onclick="member_del(this,'{{i.sealreturngoods_id}}')" href="javascript:;">
+                <i class="layui-icon">&#xe640;</i>
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+       {{pg.page(page_data,'admin.returnSales')}}
+
+    </div>
+    <script>
+
+     function member_del(obj, id) {
+              console.log(id)
+              layer.confirm('确认要删除吗？', function (index) {
+                  //发异步删除数据
+                  $.get(
+                      'http://127.0.0.1/admin/dellreturnsaleses?id=' + id,
+
+                      function (html) {
+                         location.reload();
+                      }
+                  );
+                  $(obj).parents("tr").remove();
+                  layer.msg('已删除!', {icon: 1, time: 1000});
+              });
+          }
+
+    </script>
+
+
+
+{% endblock %}

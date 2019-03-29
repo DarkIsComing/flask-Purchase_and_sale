@@ -1,0 +1,30 @@
+
+{%macro page(pagination,url)%}
+ <div class="page">
+
+
+        {%if pagination.has_prev%}
+        <a class="prev" href="{{url_for(url,page=pagination.page-1)}}">上一页</a>
+        {%else%}
+        <a class="prev" href="#">上一页</a>
+        {%endif%}
+
+            {%for page in pagination.iter_pages(1,1,3,1)%}
+            {%if page%}
+                <a class="current" href="{{url_for(url,page=page)}}">{{page}}</a>
+            {%else%}
+                <a class="num" href="#">&hellip;</a>
+            {%endif%}
+
+        {%endfor%}
+
+        {%if pagination.has_next%}
+        <a class="next" href="{{url_for(url,page=pagination.page+1)}}">下一页</a>
+        {%else%}
+        <a class="next" href="#">下一页</a>
+        {%endif%}
+        <a href="{{url_for(url,page=pagination.pages)}}">尾页</a>
+
+
+      </div>
+{%endmacro%}

@@ -1,0 +1,32 @@
+{% extends "admin/bases.html" %}
+
+
+{% block content %}
+
+<div class="x-body">
+	<div class="layui-row">
+
+		<form class="layui-form layui-col-xs9 x-so layui-col-space10 layui-form-pane" method="post">
+
+
+		 <div class="layui-input-inline">
+			<label class="layui-form-label">{{form.name.label}}</label>
+			 {{form.name}}
+		</div>
+
+		  {{form.csrf_token}}
+      {{form.submit}}
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+
+
+		</form>
+	</div>
+
+</div>
+
+
+
+ <script>
+
+  </script>
+{% endblock %}

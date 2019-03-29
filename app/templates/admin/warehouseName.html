@@ -1,0 +1,86 @@
+{% extends "admin/bases.html" %}
+
+
+{% block content %}
+    
+    
+    <div class="x-body">
+
+          <xblock>
+           <button class="layui-btn" onclick="x_admin_show('添加仓库','{{url_for("admin.addRepositoryName")}}')">添加仓库</button>
+        </xblock>
+      <table class="layui-table">
+        <thead>
+          <tr>
+
+            <th>仓库编号</th>
+            <th>仓库名称</th>
+            <th>仓库位置</th>
+            <th >操作</th>
+            </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.addre}}</td>
+       
+            <td class="td-manage">
+              <a title="删除" onclick="member_del(this,'')" href="javascript:;">
+                <i class="layui-icon">&#xe640;</i>
+              </a>
+            </td>
+          </tr>
+
+        </tbody>
+    
+
+      </table>
+      <div class="page">
+        <div>
+          <a class="prev" href="">&lt;&lt;</a>
+          <a class="num" href="">1</a>
+          <span class="current">2</span>
+          <a class="num" href="">3</a>
+          <a class="num" href="">489</a>
+          <a class="next" href="">&gt;&gt;</a>
+        </div>
+      </div>
+
+    </div>
+    <script>
+
+
+      /*用户-删除*/
+      function member_del(obj,id){
+          layer.confirm('确认要删除吗？',function(index){
+              //发异步删除数据
+               $.get(
+
+                    'http://127.0.0.1:5000/admin/delware?id='+id,
+                    function(html){
+                    location.reload();
+                    }
+                    );
+              $(obj).parents("tr").remove();
+              layer.msg('已删除!',{icon:1,time:1000});
+          });
+      }
+
+
+
+      function delAll (argument) {
+
+        var data = tableCheck.getData();
+  
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+      }
+    </script>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "admin/bases.html" %}
+
+
+{% block content %}
+
+  
+
+<div class="x-body">
+	<div class="layui-row">
+		<form class="layui-form layui-col-xs9 x-so layui-col-space10 layui-form-pane" method="post">
+
+		 <div class="layui-input-inline">
+			<label class="layui-form-label">{{form.name.label}}</label>
+			 {{form.name}}
+		</div>
+
+		 <div class="layui-input-inline">
+			<label class="layui-form-label">{{form.local.label}}</label>
+			 {{form.local}}
+		</div>
+
+{{form.csrf_token}}
+     {{form.submit}}
+      <button type="reset" class="layui-btn layui-btn-primary layui-input-inline">重置</button>
+
+		</form>
+	</div>
+</div>
+
+ <script>
+      layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#end' //指定元素
+        });
+      });
+  </script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "admin/bases.html" %}
+
+
+{% block content %}
+
+<div class="x-body">
+	<div class="layui-row">
+
+		<form class="layui-form layui-col-xs9 x-so layui-col-space10 layui-form-pane" method="post">
+
+		 <div class="layui-input-inline">
+			 {{form.name}}
+		</div>
+
+		  {{form.csrf_token}}
+      {{form.submit}}
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+
+
+		</form>
+	</div>
+
+</div>
+<script>
+	 function mesg() {
+	      layer.msg('添加成功!',{icon:1,time:2000});
+              setTimeout(function(){x_admin_close(); }, 2000);
+       }
+</script>
+
+{% endblock %}

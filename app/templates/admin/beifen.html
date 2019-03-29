@@ -1,0 +1,27 @@
+{% extends "admin/bases.html" %}
+{% block content %}
+
+<div class="layui-main">
+<form class="layui-form" method="post">
+
+   <div class="login layui-anim layui-anim-up">
+         {{ form.csrf_token }}
+      {{form.submit}}
+          {% for message in get_flashed_messages() %}
+    	<script>
+            layui.use('layer', function(){
+  var layer = layui.layer;
+  layer.msg('{{ message }}');
+});
+
+        </script>
+    {% endfor %}
+
+    </div>
+
+</form>
+
+</div>
+
+
+{% endblock %}

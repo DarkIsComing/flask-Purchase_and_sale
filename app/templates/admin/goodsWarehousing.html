@@ -1,0 +1,94 @@
+
+{% extends "admin/bases.html" %}
+{% block content %}
+
+
+    <div class="x-body">
+     <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so">
+           <input type="text"  placeholder="商品名" autocomplete="off" class="layui-input">
+            <input type="text"  placeholder="业务员" autocomplete="off" class="layui-input">
+          <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+        </form>
+      </div>
+      <table class="layui-table">
+        <thead>
+          <tr>
+
+             <th>编号</th>
+            <th>商品名称</th>
+            <th>商品数量</th>
+            <th>商品单价</th>
+            <th>订单时间</th>
+
+            <th >操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in purchases %}
+          <tr>
+
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.num}}</td>
+            <td>{{i.price}}</td>
+            <td>{{i.addtime}}</td>
+
+            <td class="td-manage">
+              <a title="删除" onclick="member_del(this,'{{i.id}}')" href="javascript:;">
+                <i class="layui-icon">&#xe640;</i>
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <div class="page">
+        <div>
+          <a class="prev" href="">&lt;&lt;</a>
+          <a class="num" href="">1</a>
+          <span class="current">2</span>
+          <a class="num" href="">3</a>
+          <a class="num" href="">489</a>
+          <a class="next" href="">&gt;&gt;</a>
+        </div>
+      </div>
+
+    </div>
+    <script>
+
+
+      /*用户-删除*/
+      function member_del(obj,id){
+          console.log(id)
+          layer.confirm('确认要删除吗？',function(index){
+              //发异步删除数据
+                    $.get(
+
+                    'http://127.0.0.1:5050/admin/ruku?id='+id,
+                    function(html){
+                    location.reload();
+                    }
+                    );
+              $(obj).parents("tr").remove();
+              layer.msg('已删除!',{icon:1,time:1000});
+          });
+      }
+
+
+
+      function delAll (argument) {
+
+        var data = tableCheck.getData();
+
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+      }
+    </script>
+
+
+
+{% endblock %}

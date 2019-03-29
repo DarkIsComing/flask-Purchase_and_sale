@@ -1,0 +1,107 @@
+{% extends "admin/bases.html" %}
+
+
+{% block content %}
+
+    <div class="x-body layui-anim layui-anim-up">
+        <blockquote class="layui-elem-quote">欢迎你：
+            <span class="x-red">{{name}}</span></blockquote>
+  <fieldset class="layui-elem-field">
+            <legend>预警先知</legend>
+            <div class="layui-field-box">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body">
+                            <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 90px;">
+                                <div carousel-item="">
+                                    <ul class="layui-row layui-col-space10 layui-this">
+
+                                        <li class="layui-col-xs2 ">
+                                            {% if names.warehouses <15 %}
+                                            <a href="javascript:;" class="x-admin-backlog-body layui-bg-red">
+                                                <h3>仓库预警</h3>
+                                                <p><cite class="layui-bg-blue">库存量过低</cite></p>
+                                            </a>
+                                                    {% else %}
+                                             <a href="javascript:;" class="x-admin-backlog-body layui-bg-gray">
+                                               <h3>仓库预警</h3>
+                                                <p><cite>存量正常</cite></p>
+                                            </a>
+
+                                            {% endif %}
+
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+<!-- 预警使用下方jquery特效显示 -->
+
+        <fieldset class="layui-elem-field">
+            <legend>数据统计</legend>
+            <div class="layui-field-box">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body">
+                            <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 90px;">
+                                <div carousel-item="">
+                                    <ul class="layui-row layui-col-space10 layui-this">
+                                        <li class="layui-col-xs2">
+                                            <a href="javascript:;" class="x-admin-backlog-body">
+                                                <h3>采购量</h3>
+                                                <p>
+                                                    <cite>{{names.purchases}}</cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="javascript:;" class="x-admin-backlog-body">
+                                                <h3>销售量</h3>
+                                                <p>
+                                                    <cite>{{names.saless}}</cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="javascript:;" class="x-admin-backlog-body">
+                                                <h3>仓库量</h3>
+                                                <p>
+                                                    <cite>{{names.warehouses}}</cite></p>
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="layui-elem-field">
+            <legend>系统通知</legend>
+            <div class="layui-field-box">
+                <table class="layui-table" lay-skin="line">
+                    <tbody>
+                        <tr>
+                            <td >
+                                <a class="x-a" href="/" target="_blank">暂无</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+
+
+    </div>
+
+
+       
+{% endblock %}

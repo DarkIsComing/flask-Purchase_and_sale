@@ -1,0 +1,148 @@
+{% extends "admin/bases.html" %}
+ {% import "admin/fy.html" as pg %}
+
+{% block content %}
+
+
+<div class="x-body">
+      <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so" method="post">
+           {{form.goods_name}}
+            {{form.person_name}}
+            {{form.csrf_token}}
+          {{form.submit}}
+        </form>
+      </div>
+<xblock>
+
+     <button class="layui-btn" onclick="x_admin_show('添加订单','{{url_for("admin.addsalesOrder")}}','1150','450')">添加订单</button>
+
+</xblock>
+
+
+
+<!-- 下方详细表格内容 -->
+  <table class="layui-table">
+        <thead>
+          <tr>
+
+              <th>商品名称</th>
+            <th>订单编号</th>
+            <th>商品數量</th>
+            <th>定金</th>
+            <th>出货人</th>
+              <th>客戶</th>
+            <th>出货时间</th>
+            <th >操作</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% for i in page_data.items %}
+          <tr>
+
+             <td>{{i.sales_goods_name}}</td>
+            <td>{{i.sales_num}}</td>
+            <td>{{i.sales_count}}</td>
+            <td>{{i.sales_price}}</td>
+              <td>{{i.client_name}}</td>
+             <td>{{i.sales_user_name}}</td>
+            <td>{{i.sales_addtime}}</td>
+           <td class="td-manage">
+              <a title="出库"  onclick="ruku(this,'{{i.sales_id}}')" href="javascript:;">
+                <i class="layui-icon">&#xe63c;</i>
+              </a>
+                <a title="退货"  onclick="returngoods(this,'{{i.sales_id}}')" href="javascript:;">
+                <i class="layui-icon">&#xe63c;</i>
+              </a>
+              <a title="删除" onclick="member_del(this,'{{i.sales_id}}')" href="javascript:;">
+                <i class="layui-icon">&#xe640;</i>
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+     {{pg.page(page_data,'admin.purchaseOrder')}}
+
+</div>
+
+
+
+ <script>
+     layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#start' //指定元素
+        });
+
+      });
+      //  用户-入库
+       function ruku(obj,id) {
+            console.log(id)
+          layer.confirm('确认要出库吗？',function(index){
+              //发异步数据
+                    $.get(
+
+                    'http://wesm.com/admin/outwarehouses?id='+id,
+                    function(html){
+                    console.log(id);
+                     location.reload();
+                    }
+                    );
+              layer.msg('已出库!',{icon:1,time:1000});
+          });
+       }
+
+      //  用户-退货
+       function returngoods(obj,id) {
+            console.log(id)
+          layer.confirm('确认要退货吗？',function(index){
+              //发异步删除数据
+                    $.get(
+
+                    'http://wesm.com/admin/returnsalegoods?id='+id,
+                    function(html){
+                         location.reload();
+
+                    }
+                    );
+              layer.msg('已退货',{icon:1,time:1000});
+          });
+       }
+
+      /*用户-删除*/
+      function member_del(obj,id){
+          console.log(id)
+          layer.confirm('确认要删除吗？',function(index){
+              //发异步删除数据
+                    $.get(
+
+                    'http://wesm.com/admin/dellsaleses?id='+id,
+
+                    function(html){
+                    console.log(html);
+                    }
+                    );
+              $(obj).parents("tr").remove();
+              layer.msg('已删除!',{icon:1,time:1000});
+          });
+      }
+
+
+
+      function delAll (argument) {
+
+        var data = tableCheck.getData();
+
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            console.log(data)
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+      }
+
+  </script>
+{% endblock %}

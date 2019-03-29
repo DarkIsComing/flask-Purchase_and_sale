@@ -1,0 +1,100 @@
+
+{% extends "admin/bases.html" %}
+ {% import "admin/fy.html" as pg %}
+{% block content %}
+
+
+    <div class="x-body">
+        <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so" method="post">
+           {{form.goods_name}}
+            {{form.person_name}}
+
+            {{form.csrf_token}}
+          {{form.submit}}
+        </form>
+        </div>
+
+      </div>
+      <table class="layui-table">
+        <thead>
+         <tr>
+
+             <th>商品编号</th>
+            <th>商品名称</th>
+            <th>数量</th>
+            <th>总价</th>
+            <th>供应商</th>
+            <th>退货人</th>
+            <th >操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in page_data.items %}
+         <tr>
+
+           <td>{{i.returngoods_num}}</td>
+            <td>{{i.returngoods_goods}}</td>
+            <td>{{i.returngoods_count}}</td>
+            <td>{{i.returngoods_price}}</td>
+            <td>{{i.returngoods_supplier}}</td>
+            <td>{{i.returngoods_user_name}}</td>
+
+            <td class="td-manage">
+
+              <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                <i class="layui-icon">&#xe640;</i>
+              </a>
+            </td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+      {{pg.page(page_data,'admin.returnOrder')}}
+
+    </div>
+    <script>
+       layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#start' //指定元素
+        });
+
+      });
+
+      /*用户-删除*/
+      function member_del(obj,id){
+          console.log(id)
+          layer.confirm('确认要删除吗？',function(index){
+              //发异步删除数据
+                    $.get(
+
+                    'http://127.0.0.1:5000/admin/chushou?id='+id,
+                    function(html){
+                    location.reload();
+                    }
+                    );
+              $(obj).parents("tr").remove();
+              layer.msg('已删除!',{icon:1,time:1000});
+          });
+      }
+
+
+
+      function delAll (argument) {
+
+        var data = tableCheck.getData();
+
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+      }
+    </script>
+
+
+
+{% endblock %}
