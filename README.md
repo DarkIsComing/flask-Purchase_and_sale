@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-# flask-Purchase_and_sale-
 flask实现的简单进销存后台管理系统
 =======
 ## 进销存管理后台系统
@@ -10,31 +8,31 @@ flask实现的简单进销存后台管理系统
 
 #### 效果图
 
-![Add_merchandise ](view-photo\Add_merchandise .png)
+![Add_merchandise ](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/Add_merchandise%20.png)
 
-![Stock](view-photo\Stock.png)
+![Stock](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/Stock.png)
 
-![category](view-photo\category.png)
+![category](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/category.png)
 
-![backup](view-photo\backup.png)
+![backup](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/backup.png)
 
-![Purchase](view-photo\Purchase.png)
+![Purchase](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/Purchase.png)
 
-![login](view-photo\login.png)
+![login](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/login.png)
 
-![Admin_list](view-photo\Admin_list.png)
+![Admin_list](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/Admin_list.png)
 
-![index](view-photo\index.png)
+![index](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/index.png)
 
-![message](view-photo\message.png)
+![message](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/message.png)
 
-![Statistics](view-photo\Statistics.png)
+![Statistics](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/Statistics.png)
 
-![Sale](view-photo\Sale.png)
+![Sale](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/Sale.png)
 
-![flowsheet](view-photo\flowsheet.png)
+![flowsheet](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/flowsheet.png)
 
-![db](view-photo\db.png)
+![db](https://github.com/agamgn/flask-Purchase_and_sale/blob/master/view-photo/db.png)
 
 #### 技术栈
 
@@ -56,4 +54,3 @@ python manage.py runserver
 #默认超级管理员
 root:root
 ```
->>>>>>> first commit
